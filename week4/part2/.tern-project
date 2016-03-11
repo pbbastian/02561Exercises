@@ -1,0 +1,11 @@
+{
+  "libs": [
+    "browser"
+  ],
+  "loadEagerly": [
+    "gl-attribute.js",
+    "gl-array-buffer.js",
+    "gl-element-buffer.js",
+    "../../MV.js"
+  ]
+}

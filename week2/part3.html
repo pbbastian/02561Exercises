@@ -1,0 +1,55 @@
+<!doctype html>
+<head>
+
+</head>
+<body>
+<div>
+  <button id="clear-button">Clear</button>
+  <select id="color-select">
+    <option value="white">White</option>
+    <option value="black">Black</option>
+    <option value="sky blue">Sky Blue</option>
+    <option value="yellow">Yellow</option>
+    <option value="orange">Orange</option>
+    <option value="tornado red" selected>Tornado Red</option>
+    <option value="radical blue">Radical Blue</option>
+    <option value="green">Green</option>
+    <option value="hot orange">Hot Orange</option>
+    <option value="gray">Gray</option>
+    <option value="cornflower">Cornflower</option>
+  </select>
+  <button id="point-button" disabled>Point</button>
+  <button id="circle-button">Circle</button>
+  <button id="triangle-button">Triangle</button>
+</div>
+<canvas id="gl-canvas" width="500" height="500" style="border: 1px solid gray">
+  <!-- The following message is displayed if the browser doesn’t support HTML5 -->
+  Sorry; your web browser does not support HTML5’s canvas element.
+</canvas>
+<!-- SCRIPTS -->
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec3 vPosition;
+attribute vec4 vColor;
+varying vec4 fColor;
+
+void main() {
+  gl_PointSize = 20.0;
+  gl_Position = vec4(vPosition, 1.0);
+  fColor = vColor;
+}
+</script>
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+
+varying vec4 fColor;
+
+void main() {
+  gl_FragColor = fColor;
+}
+</script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.js" type="text/javascript"></script> -->
+<script src="../webgl-utils.js" type="text/javascript"></script>
+<script src="../initShaders.js" type="text/javascript"></script>
+<script src="../MV.js" type="text/javascript"></script>
+<script src="part3.js" type="text/javascript"></script>
+</body>

@@ -1,0 +1,38 @@
+<!doctype html>
+<head>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.js"></script>-->
+</head>
+<body>
+<canvas id="gl-canvas" width="500" height="500">
+  <!-- The following message is displayed if the browser doesn’t support HTML5 -->
+  Sorry; your web browser does not support HTML5’s canvas element.
+</canvas>
+<!-- SCRIPTS -->
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec3 vPosition;
+attribute vec3 vColor;
+uniform float theta;
+varying vec4 fColor;
+
+void main() {
+  gl_Position.x = -sin(theta) * vPosition.x + cos(theta) * vPosition.y;
+  gl_Position.y =  sin(theta) * vPosition.y + cos(theta) * vPosition.x;
+  gl_Position.z = 0.0;
+  gl_Position.w = 1.0;
+  fColor = vec4(vColor, 1.0);
+}
+</script>
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+
+varying vec4 fColor;
+
+void main() {
+  gl_FragColor = fColor;
+}
+</script>
+<script src="../webgl-utils.js" type="text/javascript"></script>
+<script src="../initShaders.js" type="text/javascript"></script>
+<script src="../MV.js" type="text/javascript"></script>
+<script src="part4.js" type="text/javascript"></script>
+</body>
